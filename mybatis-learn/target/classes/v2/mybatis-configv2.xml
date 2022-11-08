@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    <properties resource="v2/jdbc.properties">-->
+<!--        <property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="jdbc.url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>-->
+<!--        <property name="jdbc.username" value="root"/>-->
+<!--        <property name="jdbc.password" value="LCJ3mysql"/>-->
+<!--    </properties>-->
+
+
+<!--    <settings>-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--    </settings>-->
+
+<!--    <typeAliases>-->
+<!--        &lt;!&ndash; 逐个声明-->
+<!--        <typeAlias alias="Department" type="com.linkedbear.mybatis.entity.Department"/>-->
+<!--        &ndash;&gt;-->
+
+<!--        &lt;!&ndash; 包扫描-->
+<!--             以此法被扫描的实体类，别名为类名的首字母小写形式(类似于Bean -> bean)-->
+<!--        &ndash;&gt;-->
+<!--        <package name="com.linkedbear.mybatis.entity"/>-->
+<!--    </typeAliases>-->
+
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="com.linkedbear.mybatis.handler.DepartmentTypeHandler"-->
+<!--                     javaType="com.linkedbear.mybatis.entity.Department" jdbcType="VARCHAR"/>-->
+<!--    </typeHandlers>-->
+
+<!--    <objectFactory type="com.linkedbear.mybatis.factory.ExtendsObjectFactory"/>-->
+
+<!--    &lt;!&ndash;-->
+<!--    <plugins>-->
+<!--        <plugin interceptor=""></plugin>-->
+<!--    </plugins>-->
+<!--    &ndash;&gt;-->
+
+
+    <properties resource="v2/jdbc.properties"></properties>
+<!--    <properties>-->
+<!--        <property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="jdbc.url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>-->
+<!--        <property name="jdbc.username" value="root"/>-->
+<!--        <property name="jdbc.password" value="LCJ3mysql"/>-->
+<!--    </properties>-->
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="v2/departmentv2.xml"/>
+    </mappers>
+</configuration>
+
