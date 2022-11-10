@@ -3,7 +3,7 @@ package v2.bean;
 
 import java.util.Objects;
 
-public class Department {
+public class Departments {
 
     private String id;
 
@@ -22,7 +22,7 @@ public class Department {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Department that = (Department) o;
+        Departments that = (Departments) o;
         return Objects.equals(id, that.id);
     }
 

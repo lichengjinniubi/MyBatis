@@ -10,10 +10,11 @@
 <!--        <property name="jdbc.password" value="LCJ3mysql"/>-->
 <!--    </properties>-->
 
+    <properties resource="v2/jdbc.properties"></properties>
 
-<!--    <settings>-->
-<!--        <setting name="logImpl" value="LOG4J"/>-->
-<!--    </settings>-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
 
 <!--    <typeAliases>-->
 <!--        &lt;!&ndash; 逐个声明-->
@@ -39,8 +40,26 @@
 <!--    </plugins>-->
 <!--    &ndash;&gt;-->
 
+    <typeAliases>
+        <!-- 逐个声明
+        <typeAlias alias="Department" type="com.linkedbear.mybatis.entity.Department"/>
+        -->
 
-    <properties resource="v2/jdbc.properties"></properties>
+        <!-- 包扫描
+             以此法被扫描的实体类，别名为类名的首字母小写形式(类似于Bean -> bean)
+        -->
+        <package name="v2.bean"/>
+    </typeAliases>
+
+
+    <typeHandlers>
+        <typeHandler handler="v2.handler.DepartmentsTypeHandler" javaType="v2.bean.Departments" jdbcType="VARCHAR"/>
+    </typeHandlers>
+
+
+
+
+
 <!--    <properties>-->
 <!--        <property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>-->
 <!--        <property name="jdbc.url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>-->
@@ -61,6 +80,7 @@
     </environments>
     <mappers>
         <mapper resource="v2/departmentv2.xml"/>
+        <mapper resource="v2/user.xml"/>
     </mappers>
 </configuration>
 

@@ -6,13 +6,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import v2.bean.Department;
 import v1.dao.DepartmentDao;
+import v2.bean.User;
 import v2.service.DepartmentMapper;
 import v1.service.impl.DepartmentDaoImpl;
+import v2.service.UserMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 public class MyBatisApplicationStart {
 
@@ -55,18 +58,45 @@ public class MyBatisApplicationStart {
 
 
 
-        InputStream xml = Resources.getResourceAsStream("v2/mybatis-configv2.xml");
-        // 使用Properties的API加载这些properties文件
-        Properties properties = new Properties();
-        properties.load(Resources.getResourceAsStream("v2/jdbc.properties"));
-
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(xml, properties);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        DepartmentMapper departmentMapper = sqlSession.getMapper(DepartmentMapper.class);
-        Department department = departmentMapper.findById("18ec781fbefd727923b0d35740b177ab");
-        System.out.println(department);
+//        InputStream xml = Resources.getResourceAsStream("v2/mybatis-configv2.xml");
+//        // 使用Properties的API加载这些properties文件
+//        Properties properties = new Properties();
+//        properties.load(Resources.getResourceAsStream("v2/jdbc.properties"));
+//
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(xml, properties);
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//
+//        DepartmentMapper departmentMapper = sqlSession.getMapper(DepartmentMapper.class);
+//        Department department = departmentMapper.findById("18ec781fbefd727923b0d35740b177ab");
+//        System.out.println(department);
         //System.out.println(department.getUsers());
+
+
+
+        InputStream xml = Resources.getResourceAsStream("v2/mybatis-configv2.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(xml);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //typeHandler启动的方式
+//
+        List<User> userList = userMapper.findAllUseTypeHandler();
+        userList.forEach(System.out::println);
+
+
+        //typeHandler自动识别对象插入数据库
+//        User user = new User();
+//        user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+//        user.setName("hahahaha");
+//        Department department = new Department();
+//        department.setId("18ec781fbefd727923b0d35740b177ab");
+//        user.setDepartment(department);
+//        userMapper.saveUser(user);
+//
+//        // commit才能使数据库操作生效
+//        sqlSession.commit();
+//        sqlSession.close();
+
 
     }
 }

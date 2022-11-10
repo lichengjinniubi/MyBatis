@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="v2.service.UserMapper">
+
+<!--    <resultMap id="userHandlerMap" type="v2.bean.User">-->
+<!--        <id property="id" column="id"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <result property="age" column="age"/>-->
+<!--        <result property="birthday" column="birthday"/>-->
+<!--        <association property="department" javaType="v2.bean.Departments"/>-->
+<!--    </resultMap>-->
+
+    <select id="findAllUseTypeHandler" resultType="v2.bean.User">
+        select * from tbl_users
+    </select>
+
+    <insert id="saveUser" parameterType="v2.bean.User">
+        insert into tbl_user (id, name, department_id) VALUES (#{id}, #{name}, #{department})
+    </insert>
+
+</mapper>
